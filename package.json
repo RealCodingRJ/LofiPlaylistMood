@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/node": "^22.15.30",
+    "@types/readline-sync": "^1.4.8",
+    "readline-sync": "^1.4.10",
+    "tsx": "^4.19.4"
+  }
+}
