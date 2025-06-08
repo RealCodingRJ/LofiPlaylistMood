@@ -3,15 +3,22 @@ import { isError } from "../Error/Error";
 import * as readline from "readline-sync";
 import { TITLE } from "./TITLES";
 import { Name } from "./Message.mjs";
-import { GetDB } from "./DB";
+import { GetDB } from "../DB/DB";
 
-function getData(data: string) {
+export enum Command {
+  Name,
+}
+
+function getData(data: Command) {
   try {
-    fs.appendFile("lofiLinks.io", data, (err) => {
-      if (err) {
-        throw new Error("Cannot run File");
+    fs.appendFile("lofiLinks.io", data.toString(), (err) => {
+      if (data === Command.Name) {
+        if (err) {
+          throw new Error("Cannot run File");
+        }
+      } else {
+        console.log(data);
       }
-      return;
     });
   } catch (err) {
     isError(err);
@@ -23,15 +30,11 @@ function indexArrayLink(url: any, index: any) {
     getData(url[i]);
   }
 }
-console.log(Name);
+console.log(require("./Message.mjs").Name);
 
 console.log(TITLE);
 const link = readline.question("Enter Link from YouTube: ");
-const savedLink = window.open(link);
 GetDB(link);
-
-console.log(getData(link));
-console.log(savedLink);
 
 for (let i = 0; i < 1; i++) {
   indexArrayLink(link, i);
