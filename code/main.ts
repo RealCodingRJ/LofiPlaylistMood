@@ -2,7 +2,6 @@ import * as fs from "fs";
 import { isError } from "../Error/Error";
 import * as readline from "readline-sync";
 import { TITLE } from "./TITLES";
-import { Name } from "./Message.mjs";
 import { GetDB } from "../DB/DB";
 
 export enum Command {
