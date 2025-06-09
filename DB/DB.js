@@ -39,14 +39,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetDB = GetDB;
 var mongodb_1 = require("mongodb");
 var client = new mongodb_1.MongoClient("mongodb://localhost:27017");
-function GetDB(data) {
+function getNamedDB(name) {
+    return name.toUpperCase();
+}
+function GetDB(data, name) {
     return __awaiter(this, void 0, void 0, function () {
         var db, coll;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    db = client.db("data");
-                    coll = db.collection("db");
+                    db = client.db(getNamedDB(name));
+                    coll = db.collection(getNamedDB(name));
                     return [4 /*yield*/, coll.insertOne({ data: data })];
                 case 1:
                     _a.sent();

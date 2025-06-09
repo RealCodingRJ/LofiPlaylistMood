@@ -3,18 +3,13 @@ import { isError } from "../Error/Error";
 import * as readline from "readline-sync";
 import { TITLE } from "./TITLES";
 import { GetDB } from "../DB/DB";
+import { getTime } from "./TimeStudy";
 
-export enum Command {
-  Name,
-}
-
-function getData(data: Command) {
+function getData(data: string) {
   try {
     fs.appendFile("lofiLinks.io", data.toString(), (err) => {
-      if (data === Command.Name) {
-        if (err) {
-          throw new Error("Cannot run File");
-        }
+      if (err) {
+        throw new Error("Cannot run File");
       } else {
         console.log(data);
       }
@@ -24,17 +19,12 @@ function getData(data: Command) {
   }
 }
 
-function indexArrayLink(url: any, index: any) {
-  for (let i = 0; i < 5; i++) {
-    getData(url[i]);
-  }
-}
-console.log(require("./Message.mjs").Name);
-
-console.log(TITLE);
 const link = readline.question("Enter Link from YouTube: ");
-GetDB(link);
+GetDB(link, "LofiMood");
 
-for (let i = 0; i < 1; i++) {
-  indexArrayLink(link, i);
-}
+const now = new Date().getDate();
+const nextDay = new Date().getDate() + 1;
+const a = now + " " + nextDay;
+
+console.log(getTime(now, nextDay));
+getData(link);
